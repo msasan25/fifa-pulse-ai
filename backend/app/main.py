@@ -6,7 +6,14 @@ app = FastAPI(
 )
 
 @app.get("/")
-def home():
+def root():
     return {
-        "message": "FIFA Pulse AI Backend Running"
+        "status": "healthy",
+        "service": "FIFA Pulse AI API"
+    }
+
+@app.get("/health")
+def health():
+    return {
+        "status": "ok"
     }
