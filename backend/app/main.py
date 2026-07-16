@@ -1,9 +1,27 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from app.gemini import ask_gemini
 
 app = FastAPI(
     title="FIFA Pulse AI",
     version="1.0.0"
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class ChatRequest(BaseModel):
+    persona: str
+    action: str
+    message: str
+    scenario: str = "normal"
 
 @app.get("/")
 def root():
@@ -12,8 +30,26 @@ def root():
         "service": "FIFA Pulse AI API"
     }
 
-@app.get("/health")
-def health():
-    return {
-        "status": "ok"
-    }
+
+@app.post("/chat")
+def chat(request: ChatRequest):
+    try:
+        reply = ask_gemini(
+    request.persona,
+    request.action,
+    request.message,
+    request.scenario,
+)
+
+        return {
+            "success": True,
+            "data": reply
+        }
+
+    except Exception as e:
+        print(e)
+
+        return {
+            "success": False,
+            "reply": str(e)
+        }
