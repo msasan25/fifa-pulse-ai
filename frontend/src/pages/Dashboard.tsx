@@ -195,25 +195,37 @@ export default function Dashboard() {
    
 
     return (
-        <main className="min-h-screen bg-slate-100 p-8">
-            <div className="mb-6 flex justify-end">
-                <button
+        <main className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 px-6 py-8">            <div className="mb-8">
+                <h1 className="text-4xl font-bold text-slate-800">
+                    {content.title}
+                </h1>
+
+                <p className="mt-2 text-slate-600">
+                    AI-powered stadium assistance for FIFA World Cup 2026.
+                </p>
+            </div>
+           <div className="mb-6 flex justify-between items-center"> 
+                <button aria-label="Logout"
                     onClick={handleLogout}
-                    className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-                >
+                    className="rounded-xl bg-red-600 px-5 py-2 font-medium text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"                >
                     Logout
                 </button>
             </div>
 
-            <div className="mb-6">
-                <label className="mb-2 block font-semibold">
+            <div className="mb-6" >
+                <label
+                    htmlFor="scenario"
+                    className="mb-2 block font-semibold focus:outline-none"
+                >
                     Stadium Scenario
                 </label>
 
                 <select
+                    id="scenario"
+                    aria-label="Stadium Scenario"
                     value={scenario}
                     onChange={(e) => setScenario(e.target.value)}
-                    className="rounded-lg border p-2"
+                    className="w-full max-w-sm rounded-xl border border-slate-300 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="normal">Normal Match</option>
                     <option value="peak">Peak Entry</option>
@@ -222,11 +234,14 @@ export default function Dashboard() {
                 </select>
             </div>
 
-            <div className="mt-10 grid gap-8 lg:grid-cols-3">
+            <div className="mt-10 grid gap-8 lg:grid-cols-3 focus:outline-none
+">
 
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-2 focus:outline-none
+">
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 focus:outline-none
+">
 
                         {content.actions.map((item) => (
 
@@ -236,9 +251,13 @@ export default function Dashboard() {
                                     setSelectedAction(item.action);
                                     setSelectedPrompt(item.prompt);
                                 }}
-                                className="rounded-xl bg-white p-6 text-left shadow transition hover:shadow-lg"
-                            >
-                                <h2 className="text-lg font-semibold">
+                                className={`rounded-2xl border p-6 text-left transition-all duration-300
+${selectedAction === item.action
+                                        ? "border-blue-500 bg-blue-50 shadow-lg"
+                                        : "border-slate-200 bg-white shadow-md hover:-translate-y-1 hover:shadow-xl"
+                                    }
+focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}                            >
+                                <h2 className="text-lg font-semibold focus:outline-none">
                                     {item.label}
                                 </h2>
 

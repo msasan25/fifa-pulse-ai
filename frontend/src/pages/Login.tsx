@@ -31,7 +31,10 @@ export default function Login() {
 
         <main className="flex min-h-screen items-center justify-center bg-slate-100">
 
-            <div className="rounded-2xl bg-white p-10 shadow-xl">
+            <div className="rounded-2xl bg-white p-10 shadow-xl focus:outline-none
+focus:ring-2
+focus:ring-blue-500
+focus:ring-offset-2">
 
                 <h1 className="mb-6 text-3xl font-bold">
                     FIFA Pulse AI

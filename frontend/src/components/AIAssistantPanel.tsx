@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../firestore";
+
 
 type AIAssistantPanelProps = {
     title: string;
@@ -10,7 +9,6 @@ type AIAssistantPanelProps = {
     action: string;
     scenario: string;
 };
-
 export default function AIAssistantPanel({
     title,
     placeholder,
@@ -54,24 +52,18 @@ export default function AIAssistantPanel({
 
           
 
-        } catch (error) {
-
-            console.error(error);
-
-            setResponse(
-                "Unable to connect to the AI service."
-            );
-
+        } catch (err) {
+            console.error(err);
         } finally {
-
             setLoading(false);
-
         }
-
     };
 
+    console.log("loading:", loading);  
+
     return (
-        <div className="rounded-2xl bg-white p-6 shadow-lg">
+        <div className="rounded-2xl bg-white p-6 shadow-lg focus:outline-none
+">
 
             <h2 className="mb-2 text-2xl font-bold">
                 {title}
@@ -80,27 +72,55 @@ export default function AIAssistantPanel({
             <p className="mb-4 text-sm text-slate-500">
                 Current Action
             </p>
-
-            <div className="mb-4 rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
+            <div className="mb-6 rounded-xl bg-blue-50 px-4 py-3 text-sm font-medium text-blue-700">
+           
                 {action || "No action selected"}
             </div>
 
+            <label
+                htmlFor="ai-message"
+                className="mb-2 block text-sm font-medium text-slate-700"
+            >
+                AI Request
+            </label>
+
             <textarea
+                id="ai-message"
+                aria-label="AI Request"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder={placeholder}
-                className="h-40 w-full rounded-xl border p-4"
+                rows={5}
+                className="mb-4 w-full rounded-xl border border-slate-300 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <button
                 onClick={askAI}
                 disabled={loading}
-                className="mt-4 w-full rounded-xl bg-slate-900 py-3 text-white"
+                className={`w-full rounded-xl px-4 py-3 font-semibold text-white transition ${loading
+                        ? "cursor-not-allowed bg-gray-400"
+                        : "bg-blue-600 hover:bg-blue-700"
+                    }`}
             >
-                {loading ? "Thinking..." : "Ask AI"}
-            </button>
+                {loading ? "🤖 FIFA Pulse AI is analysing..." : "Ask AI"}            </button>
 
+            {!response && (
+                <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center">
 
+                    <div className="mb-3 text-4xl">⚽</div>
+
+                    <h3 className="text-lg font-semibold">
+                        Ready to Assist
+                    </h3>
+
+                    <p className="mt-2 text-sm text-slate-500">
+                        Select an action, review the stadium scenario and click
+                        <strong> Ask AI </strong>
+                        to receive real-time guidance.
+                    </p>
+
+                </div>
+            )}
             {response && (
 
                 <div className="mt-6 rounded-xl bg-slate-100 p-4">
@@ -117,7 +137,7 @@ export default function AIAssistantPanel({
 
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                         <h4 className="font-semibold">
                             📍 Summary
                         </h4>
@@ -127,7 +147,7 @@ export default function AIAssistantPanel({
                         </p>
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                         <h4 className="font-semibold">
                             ✅ Recommendation
                         </h4>
@@ -137,7 +157,7 @@ export default function AIAssistantPanel({
                         </p>
                     </div>
 
-                    <div>
+                    <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                         <h4 className="font-semibold">
                             ℹ️ Additional Information
                         </h4>
@@ -158,7 +178,8 @@ export default function AIAssistantPanel({
                                     <button
                                         key={item}
                                         onClick={() => setMessage(item)}
-                                        className="rounded-full bg-blue-100 px-4 py-2 text-sm hover:bg-blue-200"
+                                        className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium transition hover:scale-105 hover:bg-blue-200"
+                              
                                     >
                                         {item}
                                     </button>

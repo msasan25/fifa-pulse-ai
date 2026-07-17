@@ -33,20 +33,21 @@ export default function Landing() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-100 px-6 py-16">
-            <div className="mx-auto max-w-6xl">
-                <div className="mb-16 text-center">
-                    <h1 className="mb-4 text-5xl font-bold">
-                        ⚽ FIFA Pulse AI
-                    </h1>
+        <main className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 px-6 py-16">            <div className="mx-auto max-w-6xl">
+            <div className="mb-16 rounded-3xl bg-gradient-to-r from-blue-700 to-indigo-700 p-10 text-center text-white shadow-xl">
 
-                    <p className="mx-auto max-w-2xl text-lg text-slate-600">
-                        Choose your role and experience AI-powered assistance.
-                    </p>
-                </div>
+                <h1 className="mb-4 text-5xl font-extrabold">
+                    ⚽ FIFA Pulse AI
+                </h1>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                    <PersonaCard
+                <p className="mx-auto max-w-3xl text-lg text-blue-100">
+                    Real-time AI assistant for Fans, Volunteers, Organizers and Venue Staff
+                    during FIFA World Cup 2026.
+                </p>
+
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">                    <PersonaCard
                         icon="⚽"
                         title="Fan"
                         description="Navigate the stadium and get assistance."
