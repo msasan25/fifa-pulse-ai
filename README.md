@@ -91,15 +91,18 @@ Role-based AI Assistant
 
 ## Features
 
-- Persona-based AI assistance
-- Scenario-driven recommendations
-- Stadium navigation support
-- Crowd management guidance
-- Accessibility assistance
-- Emergency response support
+- AI-powered stadium assistant using Google Gemini
+- Four role-specific personas
+- Stadium scenario-aware recommendations
+- Navigation and accessibility guidance
+- Emergency response assistance
+- Operational decision support
 - Google Authentication
-- Responsive web application
+- Accessible user interface
+- Responsive design
 - Cloud-native deployment
+- Automated backend testing
+- GitHub Actions CI
 
 ---
 
@@ -132,15 +135,35 @@ Role-based AI Assistant
 
 ## Testing
 
-Manual testing was performed for:
+### Automated Testing
+
+Backend tests are implemented using **pytest**.
+
+Run locally:
+
+```bash
+cd backend
+pytest
+```
+
+Automated tests cover:
+
+- API endpoints
+- Health endpoint
+- Chat endpoint
+- Prompt generation
+- Gemini integration (mocked)
+- Error handling
+
+### Manual Testing
 
 - Google Authentication
 - Persona selection
 - AI response generation
-- Backend API validation
 - Frontend-backend integration
-- Cloud deployment
-- Production environment verification
+- Cloud deployment verification
+
+All backend tests are currently passing.
 
 ---
 
@@ -204,4 +227,3 @@ https://github.com/msasan25/fifa-pulse-ai
 
 Developed for the **FIFA AI Challenge 2026**.
 
-FIFA Pulse AI demonstrates how Generative AI can improve stadium operations, enhance fan experiences, and support operational teams through intelligent, persona-driven decision support.
