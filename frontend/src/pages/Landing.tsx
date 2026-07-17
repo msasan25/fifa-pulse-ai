@@ -1,24 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import PersonaCard from "../components/PersonaCard";
-import { login } from "../auth";
+
 
 
 export default function Landing() {
     const navigate = useNavigate();
-    const handleLogin = async () => {
-        try {
-            const user = await login();
-
-            localStorage.setItem("userName", user.displayName ?? "");
-            localStorage.setItem("userEmail", user.email ?? "");
-            localStorage.setItem("userPhoto", user.photoURL ?? "");
-
-            navigate("/persona");
-        } catch (error) {
-            console.error(error);
-            
-        }
-    };
+    
 
     const selectPersona = (persona: string) => {
 
