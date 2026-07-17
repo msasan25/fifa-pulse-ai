@@ -2,6 +2,9 @@ import os
 import json
 from dotenv import load_dotenv
 from google import genai
+import logging
+
+logger = logging.getLogger(__name__)
 
 from app.simulator import SCENARIOS
 
@@ -252,7 +255,7 @@ def ask_gemini(
         return json.loads(text)
 
     except Exception as e:
-     print("JSON Parse Error:", e)
+     logger.exception("Failed to parse Gemini response")
      print("Gemini Response:")
      print(response.text)
 

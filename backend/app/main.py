@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import logging
+
+logger = logging.getLogger(__name__)
 
 from app.gemini import ask_gemini
 
@@ -32,7 +35,11 @@ def root():
         "status": "healthy",
         "service": "FIFA Pulse AI API"
     }
-
+@app.get("/health")
+def health():
+    return {
+        "status": "healthy"
+    }
 
 @app.post("/chat")
 def chat(request: ChatRequest):
@@ -48,11 +55,19 @@ def chat(request: ChatRequest):
             "success": True,
             "data": reply
         }
-
     except Exception as e:
-        print(e)
+      logger.exception("Error while processing chat request")
 
+<<<<<<< HEAD
         return {
             "success": False,
             "reply": str(e)
         }
+=======
+      return {
+        "success": False,
+        "reply": str(e)
+    }
+
+    
+>>>>>>> bee784e (test changes)
