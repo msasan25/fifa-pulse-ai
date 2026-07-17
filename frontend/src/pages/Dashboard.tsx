@@ -196,7 +196,8 @@ export default function Dashboard() {
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 px-6 py-8">            <div className="mb-8">
-                <h1 className="text-4xl font-bold text-slate-800">
+            <h1 id="dashboard-title"
+                className="text-4xl font-bold text-slate-800">
                     {content.title}
                 </h1>
 
@@ -207,7 +208,7 @@ export default function Dashboard() {
            <div className="mb-6 flex justify-between items-center"> 
                 <button aria-label="Logout"
                     onClick={handleLogout}
-                    className="rounded-xl bg-red-600 px-5 py-2 font-medium text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"                >
+                    className="rounded-xl bg-red-600 px-5 py-2 font-medium text-white transition hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus:ring-red-500 focus:ring-offset-2"                >
                     Logout
                 </button>
             </div>
@@ -220,12 +221,12 @@ export default function Dashboard() {
                     Stadium Scenario
                 </label>
 
-                <select
+                <select aria-describedby="scenario-help"
                     id="scenario"
                     aria-label="Stadium Scenario"
                     value={scenario}
                     onChange={(e) => setScenario(e.target.value)}
-                    className="w-full max-w-sm rounded-xl border border-slate-300 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full max-w-sm rounded-xl border border-slate-300 bg-white px-4 py-3 shadow-sm focus:outline-none focus-visible:ring-2 focus:ring-blue-500"
                 >
                     <option value="normal">Normal Match</option>
                     <option value="peak">Peak Entry</option>
@@ -237,8 +238,7 @@ export default function Dashboard() {
             <div className="mt-10 grid gap-8 lg:grid-cols-3 focus:outline-none
 ">
 
-                <div className="lg:col-span-2 focus:outline-none
-">
+                <div className="lg:col-span-2 focus:outline-none" aria-labelledby="dashboard-title">
 
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 focus:outline-none
 ">
@@ -256,7 +256,7 @@ ${selectedAction === item.action
                                         ? "border-blue-500 bg-blue-50 shadow-lg"
                                         : "border-slate-200 bg-white shadow-md hover:-translate-y-1 hover:shadow-xl"
                                     }
-focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}                            >
+focus:outline-none focus-visible:ring-2 focus:ring-blue-500 focus:ring-offset-2`}                            >
                                 <h2 className="text-lg font-semibold focus:outline-none">
                                     {item.label}
                                 </h2>
@@ -268,14 +268,15 @@ focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}       
                     </div>
 
                 </div>
-
+                <aside aria-label="AI Assistant">
                 <AIAssistantPanel
                     title="AI Assistant"
                     placeholder="Ask a question..."
                     prompt={selectedPrompt}
                     action={selectedAction}
                     scenario={scenario}
-                />
+                    />
+                </aside>
 
             </div>
 

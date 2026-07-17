@@ -1,1 +1,26 @@
 @import "tailwindcss";
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: #ffffff;
+    color: #000;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    z-index: 9999;
+}
+
+    .skip-link:focus {
+        left: 16px;
+        top: 16px;
+    }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
