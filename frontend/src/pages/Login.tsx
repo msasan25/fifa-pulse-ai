@@ -2,13 +2,10 @@ import { login } from "../auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-
         try {
-
             const user = await login();
 
             localStorage.setItem("userName", user.displayName ?? "");
@@ -16,45 +13,45 @@ export default function Login() {
             localStorage.setItem("userPhoto", user.photoURL ?? "");
 
             navigate("/dashboard");
-
         } catch (err) {
-
             console.error(err);
-
             alert("Login failed");
-
         }
-
     };
 
     return (
-
-        <main className="flex min-h-screen items-center justify-center bg-slate-100">
-
-            <div className="rounded-2xl bg-white p-10 shadow-xl focus:outline-none
-focus:ring-2
-focus:ring-blue-500
-focus:ring-offset-2">
-
-                <h1 className="mb-6 text-3xl font-bold">
+        <main
+            id="main-content"
+            className="flex min-h-screen items-center justify-center bg-slate-100"
+        >
+            <section
+                aria-labelledby="login-title"
+                className="rounded-2xl bg-white p-10 shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+                <h1
+                    id="login-title"
+                    className="mb-6 text-3xl font-bold"
+                >
                     FIFA Pulse AI
                 </h1>
 
-                <p className="mb-6 text-slate-500">
-                    Sign in to access operational tools.
+                <p
+                    id="login-description"
+                    className="mb-6 text-slate-500"
+                >
+                    Sign in with your Google account to access operational tools.
                 </p>
 
                 <button
+                    type="button"
                     onClick={handleLogin}
-                    className="w-full rounded-xl bg-slate-900 py-3 text-white"
+                    aria-label="Sign in with Google"
+                    aria-describedby="login-description"
+                    className="w-full rounded-xl bg-slate-900 py-3 text-white transition hover:bg-slate-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                     Continue with Google
                 </button>
-
-            </div>
-
+            </section>
         </main>
-
     );
-
 }
