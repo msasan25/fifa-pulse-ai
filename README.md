@@ -1,152 +1,163 @@
-# ⚽ FIFA Pulse AI - Intelligent Stadium Operations Assistant
+# ⚽ FIFA Pulse AI – Intelligent Stadium Operations Assistant
 
 ## Overview
 
-FIFA Pulse AI is an AI-powered stadium operations assistant designed to enhance the FIFA World Cup 2026 experience for fans, volunteers, organizers, and venue staff. By combining persona-driven AI assistance with real-time operational guidance, the platform improves navigation, crowd management, accessibility, emergency response, and event coordination.
+FIFA Pulse AI is an AI-powered stadium operations assistant built for the **FIFA AI Challenge 2026**. The platform enhances the FIFA World Cup experience by providing intelligent, persona-specific recommendations for fans, volunteers, organizers, and venue staff using **Google Gemini 2.5 Flash**.
+
+By combining Generative AI with a modern cloud-native architecture, FIFA Pulse AI delivers contextual assistance for navigation, accessibility, crowd management, transportation, emergency response, and operational decision-making.
 
 ---
 
-## Challenge Theme
+# 🚀 Key Features
+
+- 🤖 AI-powered stadium assistant using Google Gemini 2.5 Flash
+- 👥 Four role-specific personas
+  - 🎟 Fan
+  - 🙋 Volunteer
+  - 🏟 Organizer
+  - 🛡 Venue Staff
+- 🏟 Stadium scenario-aware recommendations
+- 🗺 Navigation and accessibility guidance
+- 🚨 Emergency response assistance
+- 📊 Operational decision support
+- 🔐 Google OAuth Authentication
+- ♿ Accessible and responsive interface
+- ☁ Cloud-native deployment
+- ✅ Automated backend testing with Pytest
+- 🔄 GitHub Actions CI pipeline
+
+---
+
+# 🏆 Challenge Theme
 
 **Generative AI for Stadium Operations & Fan Experience**
 
-FIFA Pulse AI leverages Google Gemini to deliver contextual, role-specific recommendations that support both visitors and stadium operations throughout a match day.
+FIFA Pulse AI leverages Google Gemini to deliver contextual, role-specific recommendations that improve stadium operations and enhance the fan experience throughout a match day.
 
 ---
 
-## Problem Statement
+# Problem Statement
 
-Large sporting events involve thousands of attendees, multiple operational teams, and rapidly changing situations. Users often require quick, reliable, and context-aware information, while organizers need intelligent support for operational decision-making.
+Managing large sporting events involves thousands of attendees, multiple operational teams, and rapidly changing situations.
 
-Traditional information systems provide static responses and are not personalized to different user roles.
+Traditional information systems often provide static information and generic responses that do not adapt to different user roles or operational scenarios.
 
-FIFA Pulse AI addresses this by delivering AI-powered, persona-specific assistance for real-world stadium scenarios.
+FIFA Pulse AI addresses this challenge by providing intelligent, persona-driven assistance that delivers relevant recommendations in real time for navigation, accessibility, crowd management, emergency handling, and stadium operations.
 
 ---
 
-## Solution
+# Solution
 
-FIFA Pulse AI provides an intelligent assistant tailored to four key personas:
+FIFA Pulse AI supports four primary personas:
 
 - 🎟 Fan
 - 🙋 Volunteer
 - 🏟 Organizer
 - 🛡 Venue Staff
 
-Based on the selected persona, operational scenario, and user query, Google Gemini generates contextual recommendations for navigation, accessibility, transportation, crowd management, emergency handling, and operational support.
+Based on the selected persona, operational scenario, and user query, Google Gemini generates contextual recommendations for:
+
+- Stadium navigation
+- Crowd management
+- Accessibility services
+- Transportation guidance
+- Emergency response
+- Operational coordination
 
 ---
 
-## AI Integration
+# 🤖 AI Workflow
 
-Google Gemini 2.5 Flash powers the AI recommendation engine.
-
-### AI Workflow
-
-User Query
-
-↓
-
+```
+User
+   │
+   ▼
 React Frontend
-
-↓
-
+   │
+   ▼
 FastAPI Backend
-
-↓
-
-Google Gemini
-
-↓
-
-Context-Aware Recommendation
-
-↓
-
+   │
+   ▼
+Google Gemini 2.5 Flash
+   │
+   ▼
+Persona-Aware AI Recommendation
+   │
+   ▼
 Interactive AI Response
+```
 
 ---
 
-## System Architecture
+# 🏗 System Architecture
 
-Frontend (React + Vite)
-
-↓
-
-FastAPI Backend
-
-↓
-
-Google Gemini
-
-↓
-
-Response Processing
-
-↓
-
-Role-based AI Assistant
+A detailed architecture diagram, request flow, and component interactions are documented in **ARCHITECTURE.md**.
 
 ---
 
-## Features
+# 🛠 Technology Stack
 
-- AI-powered stadium assistant using Google Gemini
-- Four role-specific personas
-- Stadium scenario-aware recommendations
-- Navigation and accessibility guidance
-- Emergency response assistance
-- Operational decision support
-- Google Authentication
-- Accessible user interface
-- Responsive design
-- Cloud-native deployment
-- Automated backend testing
-- GitHub Actions CI
+| Layer | Technology |
+|--------|------------|
+| Frontend | React, TypeScript, Vite, Tailwind CSS |
+| Backend | FastAPI, Python, Pydantic |
+| AI | Google Gemini 2.5 Flash |
+| Authentication | Google OAuth |
+| Deployment | Vercel, Google Cloud Run |
+| Testing | Pytest |
+| CI/CD | GitHub Actions |
 
 ---
 
-## Tech Stack
+# 🚀 Getting Started
 
-### Frontend
+## Clone Repository
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Axios
+```bash
+git clone https://github.com/msasan25/fifa-pulse-ai.git
 
-### Backend
-
-- FastAPI
-- Python
-- Pydantic
-
-### AI
-
-- Google Gemini 2.5 Flash
-
-### Deployment
-
-- Frontend: Vercel
-- Backend: Google Cloud Run
+cd fifa-pulse-ai
+```
 
 ---
 
-## Testing
+## Frontend
 
-### Automated Testing
+```bash
+cd frontend
 
-Backend tests are implemented using **pytest**.
+npm install
+
+npm run dev
+```
+
+---
+
+## Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+---
+
+# 🧪 Testing
+
+Backend tests are implemented using **Pytest**.
 
 Run locally:
 
 ```bash
 cd backend
+
 pytest
 ```
 
-Automated tests cover:
+Current automated test coverage includes:
 
 - API endpoints
 - Health endpoint
@@ -155,32 +166,26 @@ Automated tests cover:
 - Gemini integration (mocked)
 - Error handling
 
-### Manual Testing
-
-- Google Authentication
-- Persona selection
-- AI response generation
-- Frontend-backend integration
-- Cloud deployment verification
-
 All backend tests are currently passing.
 
 ---
 
-## Accessibility
+# ♿ Accessibility
 
-The application includes:
+The application follows accessibility best practices, including:
 
 - Responsive layouts
-- Keyboard-accessible controls
 - Semantic HTML
+- Keyboard navigation
 - Focus indicators
-- Accessible form labels
-- High-contrast interface elements
+- Accessible labels
+- High-contrast UI components
 
 ---
 
-## Security
+# 🔒 Security
+
+Security features include:
 
 - Google OAuth authentication
 - Environment variable-based secret management
@@ -191,39 +196,36 @@ The application includes:
 
 ---
 
-## Future Improvements
+# 🔮 Future Enhancements
 
 - Indoor stadium navigation
-- Real-time crowd heatmaps
+- Live crowd heatmaps
 - Multilingual voice assistant
 - Public transport integration
 - Predictive crowd analytics
+- Real-time operational notifications
 
 ---
 
-## Live Demo
+# 🌐 Live Demo
 
-**Frontend**
-
-https://fifa-pulse-ai-jet.vercel.app/
-
-**Backend**
-
-https://fifa-pulse-ai-641605407204.europe-west1.run.app/
-
-**API Documentation**
-
-https://fifa-pulse-ai-641605407204.europe-west1.run.app/docs
-
-**GitHub**
-
-https://github.com/msasan25/fifa-pulse-ai
+| Resource | Link |
+|----------|------|
+| Frontend | https://fifa-pulse-ai-jet.vercel.app/ |
+| Backend | https://fifa-pulse-ai-641605407204.europe-west1.run.app/ |
+| API Documentation | https://fifa-pulse-ai-641605407204.europe-west1.run.app/docs |
+| GitHub Repository | https://github.com/msasan25/fifa-pulse-ai |
 
 ---
 
-## Author
+# 👩‍💻 Author
 
 **Manpreet Kour**
 
 Developed for the **FIFA AI Challenge 2026**.
 
+---
+
+# 📄 License
+
+This project was developed for the FIFA AI Challenge 2026 and is intended for demonstration and educational purposes.
