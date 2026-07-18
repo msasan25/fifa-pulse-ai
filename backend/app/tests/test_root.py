@@ -1,5 +1,6 @@
 from app.tests.conftest import client
 
+
 def test_root():
     response = client.get("/")
 

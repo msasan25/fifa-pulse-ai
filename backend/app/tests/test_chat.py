@@ -1,11 +1,12 @@
 from app.tests.conftest import client
 
+
 def test_chat_success():
     payload = {
         "persona": "fan",
         "action": "navigate",
         "message": "Where is Gate A?",
-        "scenario": "normal"
+        "scenario": "normal",
     }
 
     response = client.post("/chat", json=payload)
@@ -19,9 +20,7 @@ def test_chat_success():
 
 
 def test_chat_validation():
-    payload = {
-        "persona": "fan"
-    }
+    payload = {"persona": "fan"}
 
     response = client.post("/chat", json=payload)
 

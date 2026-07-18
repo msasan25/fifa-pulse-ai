@@ -1,5 +1,4 @@
 SCENARIOS = {
-
     "normal": """
 Tournament: FIFA World Cup 2026
 
@@ -24,7 +23,6 @@ Metro - 10 min walk
 Bus - Platform 4
 Taxi - Zone B
 """,
-
     "peak": """
 Tournament: FIFA World Cup 2026
 
@@ -43,7 +41,6 @@ Transport:
 Metro crowded.
 Extra buses deployed.
 """,
-
     "emergency": """
 Tournament: FIFA World Cup 2026
 
@@ -64,7 +61,6 @@ High Alert
 Recommendation:
 Guide spectators calmly toward Gate C.
 """,
-
     "post_match": """
 Tournament: FIFA World Cup 2026
 
@@ -83,7 +79,7 @@ Metro delayed
 Extra buses available
 Taxi waiting time 25 minutes
 """,
-"medical_emergency": """
+    "medical_emergency": """
 Tournament: FIFA World Cup 2026
 
 Scenario:
@@ -107,8 +103,7 @@ Moderate
 Security:
 Area isolated
 """,
-
-"security_alert": """
+    "security_alert": """
 Tournament: FIFA World Cup 2026
 
 Scenario:
@@ -125,8 +120,7 @@ Investigating
 Crowd:
 Redirect spectators to Gate A.
 """,
-
-"power_failure": """
+    "power_failure": """
 Tournament: FIFA World Cup 2026
 
 Scenario:
@@ -144,8 +138,7 @@ Unavailable
 Staff:
 Maintenance team dispatched.
 """,
-
-"heavy_rain": """
+    "heavy_rain": """
 Tournament: FIFA World Cup 2026
 
 Scenario:
@@ -163,8 +156,7 @@ Metro delayed
 Umbrella Distribution:
 Gate A
 """,
-
-"lost_child": """
+    "lost_child": """
 Tournament: FIFA World Cup 2026
 
 Scenario:

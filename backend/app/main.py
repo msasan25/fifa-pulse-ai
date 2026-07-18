@@ -57,28 +57,18 @@ def health():
     }
 
 @app.post("/chat")
-def chat(request: ChatRequest):
+async def chat(request: ChatRequest):
     try:
-        reply = ask_gemini(
-    request.persona,
-    request.action,
-    request.message,
-    request.scenario,
-)
-
-        return {
-            "success": True,
-            "data": reply
-        }
+        reply = await ask_gemini(
+            request.persona,
+            request.action,
+            request.message,
+            request.scenario,
+        )
+        return {"success": True, "data": reply}
     except Exception as e:
-      logger.exception("Error while processing chat request")
-
-      return {
-      "success": False,
-    "error": {
-        "message": "Unable to process request.",
-        "details": str(e),
-    },
-    }
-
-    
+        logger.exception("Error while processing chat request")
+        return {
+            "success": False,
+            "error": {"message": "Unable to process request.", "details": str(e)},
+        }

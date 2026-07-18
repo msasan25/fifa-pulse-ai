@@ -1,5 +1,6 @@
 from app.tests.conftest import client
 
+
 def test_health():
     response = client.get("/health")
 

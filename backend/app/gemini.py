@@ -130,7 +130,18 @@ Assist with incident response.
 "security_alert": "Provide an operational response for a security alert.",
 "power_failure": "Provide an operational response for a power failure.",
 "heavy_rain": "Provide an operational response for severe weather.",
-"lost_child": "Provide an operational response for a lost child."
+"lost_child": "Provide an operational response for a lost child.",
+ "translate": "Help translate a conversation between the user and stadium staff or another visitor.",
+    "lost_found": "Assist with a lost child or a lost item, gathering key details and next steps.",
+    "medical": "Provide guidance for requesting medical assistance for a visitor.",
+    "organizer": "Prepare a concise status update for the tournament organizer.",
+    "incident_summary": "Summarize all currently open incidents and their status.",
+    "volunteer_status": "Provide current volunteer deployment and availability status.",
+    "operations": "Generate a concise operational briefing for tournament organizers.",
+    "gate_status": "Report the current open/closed status of all stadium gates.",
+    "cleaning": "Help create and route a cleaning request to the appropriate team.",
+    "equipment": "Help report and route an equipment issue to maintenance.",
+    "checklist": "Provide today's facility checklist for venue staff.",
 
 }
 
@@ -228,22 +239,15 @@ Rules:
 
 """
 
-
-def ask_gemini(
+async def ask_gemini(
     persona: str,
     action: str,
     message: str,
     scenario: str = "normal",
 ):
+    prompt = build_prompt(persona, action, message, scenario)
 
-    prompt = build_prompt(
-        persona,
-        action,
-        message,
-        scenario,
-    )
-
-    response = client.models.generate_content(
+    response = await client.aio.models.generate_content(
         model=MODEL,
         contents=prompt,
     )
@@ -251,17 +255,14 @@ def ask_gemini(
     try:
         text = response.text.strip()
         if text.startswith("```"):
-           text = text.replace("```json", "").replace("```", "").strip()
+            text = text.replace("```json", "").replace("```", "").strip()
         return json.loads(text)
-
-    except Exception as e:
-     logger.exception("Failed to parse Gemini response")
-    logger.exception("Failed to parse Gemini response")
-    logger.debug("Raw Gemini response: %s", response.text)
-
-    return {
-        "summary": response.text,
-        "recommendation": "",
-        "additional_information": "",
-        "next_actions": []
-    }
+    except Exception:
+        logger.exception("Failed to parse Gemini response")
+        logger.debug("Raw Gemini response: %s", response.text)
+        return {
+            "summary": response.text,
+            "recommendation": "",
+            "additional_information": "",
+            "next_actions": []
+        }
