@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type PersonaCardProps = {
     icon: string;
     title: string;
@@ -5,7 +7,7 @@ type PersonaCardProps = {
     onClick: () => void;
 };
 
-export default function PersonaCard({
+function PersonaCard({
     icon,
     title,
     description,
@@ -13,8 +15,9 @@ export default function PersonaCard({
 }: PersonaCardProps) {
     return (
         <button
+            type="button"
             onClick={onClick}
-            aria-label={title}
+            aria-label={`Continue as ${title}`}
             className="
                 w-full
                 rounded-3xl
@@ -27,15 +30,18 @@ export default function PersonaCard({
                 transition-all
                 duration-300
                 hover:-translate-y-2
-                hover:shadow-2xl
                 hover:border-blue-400
+                hover:shadow-2xl
                 focus:outline-none
                 focus:ring-2
                 focus:ring-blue-500
                 focus:ring-offset-2
             "
         >
-            <div className="mb-6 text-6xl">
+            <div
+                className="mb-6 text-6xl"
+                aria-hidden="true"
+            >
                 {icon}
             </div>
 
@@ -49,3 +55,5 @@ export default function PersonaCard({
         </button>
     );
 }
+
+export default memo(PersonaCard);

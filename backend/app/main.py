@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import logging
 
 logger = logging.getLogger(__name__)
@@ -24,10 +24,25 @@ app.add_middleware(
 )
 
 class ChatRequest(BaseModel):
-    persona: str
-    action: str
-    message: str
-    scenario: str = "normal"
+    persona: str = Field(
+        min_length=2,
+        max_length=30
+    )
+
+    action: str = Field(
+        min_length=2,
+        max_length=50
+    )
+
+    message: str = Field(
+        min_length=3,
+        max_length=1000
+    )
+
+    scenario: str = Field(
+        default="normal",
+        max_length=50
+    )
 
 @app.get("/")
 def root():
@@ -58,16 +73,12 @@ def chat(request: ChatRequest):
     except Exception as e:
       logger.exception("Error while processing chat request")
 
-<<<<<<< HEAD
-        return {
-            "success": False,
-            "reply": str(e)
-        }
-=======
       return {
-        "success": False,
-        "reply": str(e)
+      "success": False,
+    "error": {
+        "message": "Unable to process request.",
+        "details": str(e),
+    },
     }
 
     
->>>>>>> bee784e (test changes)

@@ -256,8 +256,8 @@ def ask_gemini(
 
     except Exception as e:
      logger.exception("Failed to parse Gemini response")
-     print("Gemini Response:")
-     print(response.text)
+    logger.exception("Failed to parse Gemini response")
+    logger.debug("Raw Gemini response: %s", response.text)
 
     return {
         "summary": response.text,

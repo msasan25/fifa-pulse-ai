@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
+import type { AIResponse } from "../types/ai";
 
 type AIAssistantPanelProps = {
     title: string;
@@ -17,8 +18,7 @@ export default function AIAssistantPanel({
     scenario,
 }: AIAssistantPanelProps) {
     const [message, setMessage] = useState("");
-    const [response, setResponse] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
+    const [response, setResponse] = useState<AIResponse | null>(null);    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setMessage(prompt);
